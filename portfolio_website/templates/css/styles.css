@@ -1,0 +1,50 @@
+h2 {
+  text-align: center;
+}
+
+.content-block{
+  background-color: black;
+}
+
+.content-block:nth-child(2n){
+  background-color: darkgrey;
+}
+.content-block__slider {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.content-block__slider__content {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.content-block__slider__content__text {
+  width: 100%;
+  height: 100%;
+  /*object-fit: cover;*/
+}
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  color: white;
+}
+
+.prev-button {
+  left: 10px;
+}
+
+.next-button {
+  right: 10px;
+}
