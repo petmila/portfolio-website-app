@@ -13,6 +13,8 @@ class ListPaginatorByOne:
             return self.object[self.current]
         except IndexError as ex:
             self.current = 0
+            if self.pages == 0:
+                return None
             return self.object[self.current]
 
     def prev(self):
@@ -21,10 +23,14 @@ class ListPaginatorByOne:
             return self.object[self.current]
         except IndexError as ex:
             self.current = 0
+            if self.pages == 0:
+                return None
             return self.object[self.current]
 
     def position(self):
         return f'{self.current + 1}/{self.pages}'
 
     def value(self):
+        if self.pages == 0:
+            return None
         return self.object[self.current]

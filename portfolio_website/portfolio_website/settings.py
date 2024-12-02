@@ -1,21 +1,15 @@
 """
 Django settings for portfolio_website project.
 """
-
 from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 import local_settings
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 SECRET_KEY = local_settings.SECRET_KEY
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -42,7 +36,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'portfolio_website.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -62,18 +55,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolio_website.wsgi.application'
 
-
-# Database
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-# Password validation
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -90,7 +77,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'
@@ -100,7 +86,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 

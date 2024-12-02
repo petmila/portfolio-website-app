@@ -1,5 +1,4 @@
 from aiogram.utils import executor
-
 from tbot_app import dp
 from tbot_app.keyboards.set_menu import set_main_menu
 

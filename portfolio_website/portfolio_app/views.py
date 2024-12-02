@@ -1,7 +1,5 @@
-import datetime
 import requests
 import json
-from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
@@ -22,7 +20,6 @@ class PostListView(generics.ListCreateAPIView):
     paginate_by = 1
 
     def create(self, request, *args, **kwargs):
-        print(request)
         request.data['datetime'] = datetime.datetime.now()
         serializer = serializers.PostSerializer(data=request.data)
         try:
@@ -39,7 +36,6 @@ class PostListView(generics.ListCreateAPIView):
 class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = models.Post.objects.all()
-    lookup_field = 'datetime'
     serializer_class = serializers.PostSerializer
 
 
@@ -52,7 +48,7 @@ class TagListView(generics.ListCreateAPIView):
 class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = models.Tag.objects.all()
-    lookup_field = 'name'
+    # lookup_field = 'name'
     serializer_class = serializers.TagSerializer
 
 
@@ -60,6 +56,7 @@ class ClientCreateView(generics.CreateAPIView):
     serializer_class = serializers.ClientSerializer
 
     def create(self, request, *args, **kwargs):
+        request.data['state'] = models.Client.State.ARCHIVED
         serializer = serializers.ClientSerializer(data=request.data)
         try:
             serializer.is_valid(raise_exception=True)
@@ -81,13 +78,13 @@ class ClientListView(generics.ListAPIView):
 class ActiveClientListView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = serializers.ClientSerializer
-    queryset = models.Client.objects.filter(state='Active')
+    queryset = models.Client.objects.filter(state=models.Client.State.ACTIVE)
 
 
 class ArchivedClientListView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = serializers.ClientSerializer
-    queryset = models.Client.objects.filter(state='Archived')
+    queryset = models.Client.objects.filter(state=models.Client.State.ARCHIVED)
 
 
 class ClientDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -99,8 +96,20 @@ class ClientDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class PortfolioDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = models.Portfolio.objects.first()
+    queryset = models.Portfolio.objects.all()
     serializer_class = serializers.PortfolioSerializer
+
+
+class ServiceListView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+    queryset = models.Service.objects.all()
+    serializer_class = serializers.ServiceSerializer
+
+
+class ServiceDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = models.Service.objects.all()
+    serializer_class = serializers.ServiceSerializer
 
 
 def index(request):

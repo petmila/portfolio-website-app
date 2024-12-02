@@ -3,7 +3,7 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 
 class PostCreateStates(StatesGroup):
     add_text = State()
-    add_tags = State()
+    add_key_phrase = State()
 
 
 class TagCreateStates(StatesGroup):
