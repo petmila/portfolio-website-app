@@ -1,0 +1,11 @@
+
+/portfolio_tbot/.idea
+/portfolio_tbot/tbot_app/__pycache__
+/portfolio_tbot/tbot_app/handlers/__pycache__
+/portfolio_tbot/tbot_app/keyboards/__pycache__
+/portfolio_website/.idea
+/portfolio_website/portfolio_app/__pycache__
+/portfolio_website/portfolio_app/migrations/__pycache__
+/portfolio_website/portfolio_website/__pycache__
+/portfolio_website/__pycache__
+/portfolio_tbot/__pycache__
