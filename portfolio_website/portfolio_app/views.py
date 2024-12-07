@@ -56,7 +56,7 @@ class ClientCreateView(generics.CreateAPIView):
     serializer_class = serializers.ClientSerializer
 
     def create(self, request, *args, **kwargs):
-        request.data['state'] = models.Client.State.ARCHIVED
+        request.data['state'] = models.Client.State.ACTIVE
         serializer = serializers.ClientSerializer(data=request.data)
         try:
             serializer.is_valid(raise_exception=True)
@@ -118,10 +118,12 @@ def index(request):
     """
     posts = models.Post.objects.order_by('datetime').all()
     portfolio = models.Portfolio.objects.first()
+    service_list = models.Service.objects.all()
 
     context = {
         'post_list': posts,
         'portfolio': portfolio,
+        'services': service_list,
     }
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)

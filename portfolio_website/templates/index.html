@@ -5,20 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Title</title>
-    <link rel="stylesheet" href="css/styles.css">
+    {% load static %}
+    <script src="{% static 'js/slider.js' %}" async></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="content-block">
-        <h1>{{ portfolio.site_name }}</h1>>
-        <h2>{{ portfolio.site_description }}</h2>>
+        <h1>{{ portfolio.site_name }}</h1>
+        <img class="main_icon" src="{% static 'images/growth.png' %}" alt="main_icon">
+        <h2>{{ portfolio.site_description }}</h2>
     </div>
     <div class="content-block">
-        <div сlass="content-block__ul">
+        <div class="content-block__ul">
             <h2>Услуги</h2>
             <ul>
-                {% for service in portfolio.service_list %}
+                {% for service in services %}
                 <li class="content-block__ul__item">
-                    {{ service }}
+                    {{ service.value }}
                 </li>
             {% endfor %}
             </ul>
@@ -28,8 +31,9 @@
         <div class="content-block__photo">
             <img src="" alt="">
         </div>
-        <div сlass="content-block__text">
+        <div class="content-block__text">
             <h2>Обо мне</h2>
+            <img class="main_icon" src="{% static 'images/about.jpg' %}" alt="about">
             <div>{{ portfolio.about }}</div>
         </div>
     </div>
@@ -38,16 +42,15 @@
             <div class="content-block__slider__content">
                 {% for post in post_list %}
                     <div class="content-block__slider__content__text">
-                        {{ post }}
+                        {{ post.text }}
                     </div>
                 {% endfor %}
             </div>
             <button class="prev-button" aria-label="Посмотреть предыдущий слайд">&lt;</button>
-            <button class="next-button" aria-label="Посмотреть следующий слайд">&gt</button>
+            <button class="next-button" aria-label="Посмотреть следующий слайд">&gt;</button>
         </div>
     </div>
     <div class="content-block">
-
     </div>
 </body>
 </html>
